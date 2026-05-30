@@ -5,9 +5,8 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
-// Note: Ensure you export a function for updating/resetting passwords from your authApi file
 import { loginUser, registerUser } from "../api/authApi"; 
-import axios from "axios"; // Fallback if direct updatePassword method isn't explicitly bound yet
+import axios from "axios"; 
 
 import bgImage from "../assets/images/pizza1.jpg";
 

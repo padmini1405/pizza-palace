@@ -552,6 +552,42 @@ textarea {
   letter-spacing: 0.5px;
 }
 
+/* Center aligned dialog sizing for deletion popup */
+.confirmation-card {
+  max-width: 400px;
+  text-align: center;
+  padding: 2rem;
+  border-top: 4px solid #dc3545; /* Critical alert accent indicator line */
+}
+
+.confirmation-icon {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+.explicit-gap {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+/* Red button look specifically for safe data termination */
+.delete-confirm-btn {
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+}
+
+.delete-confirm-btn:hover {
+  background-color: #bd2130;
+}
+
 @keyframes spin {
   0% {
     transform: rotate(0deg);

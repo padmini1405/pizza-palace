@@ -218,6 +218,9 @@ npm test
 * Sales Analytics Dashboard
 * Customer Reviews & Ratings
 
+## How to view
+You can access my website by visiting this [Link] .Feel free to explore the content and get in touch.
+
 ## Author
 
 Padmini K

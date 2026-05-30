@@ -424,6 +424,65 @@
   background: #e8ded7;
 }
 
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(62, 46, 42, 0.5); 
+  display: flex;
+  align-items: center;      
+  justify-content: center;   
+  z-index: 2000;            
+  backdrop-filter: blur(2px); 
+}
+/* Update navbar background and layout properties if auth page */
+.navbar.auth-navbar .nav-wrapper {
+  justify-content: center; /* Centers items inside the flex container */
+}
+
+/* Ensure the text doesn't look clickable when it is restricted */
+.logo.regular-text-logo {
+  cursor: default;
+  pointer-events: none; /* Block accidental clicks */
+}
+
+@media (max-width: 768px) {
+  .nav-links-desktop {
+    display: none;
+  }
+
+  .mobile-menu-trigger {
+    display: block;
+  }
+
+  .nav-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .navbar.auth-navbar .logo {
+    margin: 0 auto; 
+  }
+
+  .navbar:not(.auth-navbar) .logo {
+    margin-right: auto;
+    margin-left: 16px;
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-view-card-premium, 
+  .profile-modal-edit, 
+  .logout-alert-box {
+    width: 90% !important; 
+    margin: 0 auto;
+  }
+}
+
 /* ANIMATIONS */
 @keyframes dropdownFadeIn {
   from { opacity: 0; transform: translateY(-10px); }

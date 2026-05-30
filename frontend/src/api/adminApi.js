@@ -1,77 +1,77 @@
-import axios from "axios";
+// import axios from "axios";
 
-const API = axios.create({
-  baseURL: "http://localhost:5000/api",
-});
+// const API = axios.create({
+//   baseURL: "http://localhost:5000/api",
+// });
 
-// TOKEN
+// // TOKEN
 
-API.interceptors.request.use((req) => {
-  const token = localStorage.getItem("token");
+// API.interceptors.request.use((req) => {
+//   const token = localStorage.getItem("token");
 
-  if (token) {
-    req.headers.Authorization =
-      `Bearer ${token}`;
-  }
+//   if (token) {
+//     req.headers.Authorization =
+//       `Bearer ${token}`;
+//   }
 
-  return req;
-});
+//   return req;
+// });
 
-// ORDERS
+// // ORDERS
 
-export const getAllOrders = async () => {
-  const response = await API.get("/orders");
+// export const getAllOrders = async () => {
+//   const response = await API.get("/orders");
 
-  return response.data;
-};
+//   return response.data;
+// };
 
-export const updateOrderStatus = async (
-  id,
-  status
-) => {
-  const response = await API.put(
-    `/orders/${id}/status`,
-    { status }
-  );
+// export const updateOrderStatus = async (
+//   id,
+//   status
+// ) => {
+//   const response = await API.put(
+//     `/orders/${id}/status`,
+//     { status }
+//   );
 
-  return response.data;
-};
+//   return response.data;
+// };
 
-// PIZZAS
+// // PIZZAS
 
-export const getAllPizza = async () => {
-  const response = await API.get("/pizza");
+// export const getAllPizza = async () => {
+//   const response = await API.get("/pizza");
 
-  return response.data;
-};
+//   return response.data;
+// };
 
-export const createPizza = async (
-  pizzaData
-) => {
-  const response = await API.post(
-    "/pizza",
-    pizzaData
-  );
+// export const createPizza = async (
+//   pizzaData
+// ) => {
+//   const response = await API.post(
+//     "/pizza",
+//     pizzaData
+//   );
 
-  return response.data;
-};
+//   return response.data;
+// };
 
-export const updatePizza = async (
-  id,
-  pizzaData
-) => {
-  const response = await API.put(
-    `/pizza/${id}`,
-    pizzaData
-  );
+// export const updatePizza = async (
+//   id,
+//   pizzaData
+// ) => {
+//   const response = await API.put(
+//     `/pizza/${id}`,
+//     pizzaData
+//   );
 
-  return response.data;
-};
+//   return response.data;
+// };
 
-export const deletePizza = async (id) => {
-  const response = await API.delete(
-    `/pizza/${id}`
-  );
+// export const deletePizza = async (id) => {
+//   const response = await API.delete(
+//     `/pizza/${id}`
+//   );
 
-  return response.data;
-};
+//   return response.data;
+// };

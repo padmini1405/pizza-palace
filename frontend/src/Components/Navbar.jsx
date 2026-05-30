@@ -104,9 +104,15 @@ const Navbar = () => {
           )}
 
           {/* BRAND LOGO */}
-          <Link to="/home" className="logo">
-            Pizza Palace
-          </Link>
+          {isAuthPage ? (
+            <span className="logo regular-text-logo">
+              Pizza Palace
+            </span>
+          ) : (
+            <Link to="/home" className="logo">
+              Pizza Palace
+            </Link>
+          )}
 
           {/* CENTER: Links Menu List */}
           {!isAdmin && !isAuthPage && (

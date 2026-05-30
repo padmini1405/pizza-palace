@@ -35,6 +35,7 @@ const Checkout = () => {
   const [couponError, setCouponError] = useState("");
   const [orderSuccess, setOrderSuccess] = useState(false);
   const [generatedOrderId, setGeneratedOrderId] = useState("");
+  const [confirmedPaidTotal, setConfirmedPaidTotal] = useState(0);
 
   const subtotal = cart?.reduce((acc, item) => acc + item.price * item.quantity, 0) || 0;
   const deliveryFee = subtotal > 0 ? 45.0 : 0.0;
@@ -185,6 +186,8 @@ const Checkout = () => {
       const mockOrderId =
         "PZ" + Math.floor(100000 + Math.random() * 900000);
 
+      setConfirmedPaidTotal(finalTotal);
+
       setGeneratedOrderId(mockOrderId);
 
       setOrderSuccess(true);
@@ -214,7 +217,7 @@ const Checkout = () => {
               <div><span>Order ID:</span> <strong>{generatedOrderId}</strong></div>
               <div><span>Deliver To:</span> <strong>{formData.fullName}</strong></div>
               <div><span>Address:</span> <p>{formData.streetAddress}, {formData.city}</p></div>
-              <div><span>Amount Paid:</span> <strong className="paid-accent-color">₹{finalTotal}</strong></div>
+              <div><span>Amount Paid:</span> <strong className="paid-accent-color">₹{confirmedPaidTotal}</strong></div>
             </div>
 
             <p className="oven-timer-notice">⏱ Your artisanal selections are being tossed and fired in our stone ovens right now!</p>
