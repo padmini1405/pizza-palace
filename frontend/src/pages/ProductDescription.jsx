@@ -3,7 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import Navbar from "../Components/Navbar"; 
 import Footer from "../Components/Footer"; 
-import "../Styles/ProductDescription.css";
+import "../Styles/productDescription.css";
 import API_URL from "../config/api";
 
 const ProductDescription = () => {

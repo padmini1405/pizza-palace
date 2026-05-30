@@ -6,7 +6,7 @@ import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
 import "../Styles/Navbar.css";
 import "../Styles/Footer.css";
-import AdminTableSkeleton from "../components/AdminTableSkeleton";
+import AdminTableSkeleton from "../Components/AdminTableSkeleton";
 import API_URL from "../config/api";
 
 const AdminPizzaList = ({ searchQuery }) => {
