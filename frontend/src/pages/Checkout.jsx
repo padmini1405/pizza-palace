@@ -157,7 +157,7 @@ const Checkout = () => {
 
       // API CALL
       const response = await fetch(
-        `${API_URL}/orders`,
+        `${API_URL}/api/orders`,
         {
           method: "POST",
 

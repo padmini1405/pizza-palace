@@ -59,7 +59,7 @@ const Navbar = () => {
 
   const handleUpdateProfile = async () => {
     try {
-      const response = await fetch(`${API_URL}/auth/update-profile`, {
+      const response = await fetch(`${API_URL}/api/auth/update-profile`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

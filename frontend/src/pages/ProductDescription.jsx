@@ -26,7 +26,7 @@ const ProductDescription = () => {
     const fetchPizzaDetails = async () => {
       try {
         setLoading(true);
-        const response = await fetch(`${API_URL}/pizzas/${id}`);
+        const response = await fetch(`${API_URL}/api/pizzas/${id}`);
         const data = await response.json();
 
         if (data.success) {

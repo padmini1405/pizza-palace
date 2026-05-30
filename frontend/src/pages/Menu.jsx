@@ -36,7 +36,7 @@ const Menu = () => {
     const fetchMenuData = async () => {
       try {
         setLoading(true);
-        const response = await fetch(`${API_URL}/pizzas`);
+        const response = await fetch(`${API_URL}/api/pizzas`);
         const data = await response.json();
         
         if (data.success && data.pizza && data.pizza.length > 0) {

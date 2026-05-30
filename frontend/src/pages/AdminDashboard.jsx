@@ -21,7 +21,7 @@ const AdminDashboard = () => {
   const fetchOrders = async () => {
     try {
       const response = await fetch(
-        `${API_URL}/orders`,
+        `${API_URL}/api/orders`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -42,7 +42,7 @@ const AdminDashboard = () => {
   const handleStatusChange = async (orderId, newStatus) => {
     try {
       const response = await fetch(
-        `${API_URL}/orders/${orderId}/status`,
+        `${API_URL}/api/orders/${orderId}/status`,
         {
           method: "PUT",
           headers: {

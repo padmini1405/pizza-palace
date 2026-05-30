@@ -20,7 +20,7 @@ const Home = () => {
     try {
 
       const response = await fetch(
-        `${API_URL}/pizzas`
+        `${API_URL}/api/pizzas`
       );
 
       const data = await response.json();

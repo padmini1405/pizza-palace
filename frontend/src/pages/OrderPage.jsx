@@ -30,8 +30,8 @@ const OrdersPage = ({ adminView = false }) => {
     try {
 
       const endpoint = adminView
-        ? `${API_URL}/orders`
-        : `${API_URL}/orders/my`;
+        ? `${API_URL}/api/orders`
+        : `${API_URL}/api/orders/my`;
 
       const response = await fetch(endpoint, {
         headers: {

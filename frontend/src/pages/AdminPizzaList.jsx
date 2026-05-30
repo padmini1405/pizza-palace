@@ -41,7 +41,7 @@ const AdminPizzaList = ({ searchQuery }) => {
   const fetchPizzas = async () => {
     try {
       setLoading(true);
-      const res = await fetch(`${API_URL}/pizzas`);
+      const res = await fetch(`${API_URL}/api/pizzas`);
       const data = await res.json();
       if (data.success) {
         setPizzas(data.pizza);
@@ -55,7 +55,7 @@ const AdminPizzaList = ({ searchQuery }) => {
 
   const handleToggleAvailability = async (id, currentStatus) => {
     try {
-      const res = await fetch(`${API_URL}/pizzas/${id}`, {
+      const res = await fetch(`${API_URL}/api/pizzas/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -87,7 +87,7 @@ const AdminPizzaList = ({ searchQuery }) => {
     closeDeleteModal();
     setLoading(true);
     try {
-      const res = await fetch(`${API_URL}/pizzas/${id}`, {
+      const res = await fetch(`${API_URL}/api/pizzas/${id}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` }
       });
@@ -154,7 +154,7 @@ const AdminPizzaList = ({ searchQuery }) => {
         ])
       );
 
-      const url = editPizzaId ? `${API_URL}/pizzas/${editPizzaId}` : `${API_URL}/pizzas`;
+      const url = editPizzaId ? `${API_URL}/api/pizzas/${editPizzaId}` : `${API_URL}/api/pizzas`;
       const method = editPizzaId ? "PUT" : "POST";
       const res = await fetch(url, {
         method,
