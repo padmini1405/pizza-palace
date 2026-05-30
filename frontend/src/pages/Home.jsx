@@ -1,9 +1,8 @@
-import Navbar from "../components/Navbar";
-import Hero from "../components/Hero";
-import PizzaCard from "../components/PizzaCard";
-import Features from "../components/Features";
-import Newsletter from "../components/Newsletter";
-import Footer from "../components/Footer";
+import Navbar from "../Components/Navbar";
+import Hero from "../Components/Hero";
+import PizzaCard from "../Components/PizzaCard";
+import Features from "../Components/Features";
+import Footer from "../Components/Footer";
 import "../Styles/Home.css";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";

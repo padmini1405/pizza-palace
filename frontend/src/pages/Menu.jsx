@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
-import PromoBanner from "../components/PromoBanner";
-import PizzaCard from "../components/PizzaCard";
+import Navbar from "../Components/Navbar";
+import Footer from "../Components/Footer";
+import PromoBanner from "../Components/PromoBanner";
+import PizzaCard from "../Components/PizzaCard";
 import "../Styles/Menu.css";
-import MenuSkeleton from "../components/MenuSkeleton";
+import MenuSkeleton from "../Components/MenuSkeleton";
 import API_URL from "../config/api.js";
 
 const Menu = () => {

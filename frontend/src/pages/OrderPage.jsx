@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "../components/Navbar";
+import Navbar from "../Components/Navbar";
 import "../Styles/OrderPage.css";
 import "../Styles/Skeleton.css";
 import API_URL from "../config/api.js";
