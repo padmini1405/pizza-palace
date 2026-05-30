@@ -1,0 +1,438 @@
+.product-wrapper {
+  padding: 40px 70px;
+  background: #f8f3f0;
+  min-height: 100vh;
+}
+
+/* BREADCRUMB */
+
+.breadcrumb {
+  font-size: 13px;
+  color: #888;
+  margin-bottom: 25px;
+}
+
+.breadcrumb span {
+  color: #b33422;
+  font-weight: 600;
+}
+
+/* MAIN */
+
+.product-page {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 45px;
+}
+
+/* LEFT */
+
+.product-left img {
+  width: 100%;
+  border-radius: 14px;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+}
+
+.pizza-tags {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.pizza-tags span {
+  background: white;
+  border: 1px solid #ddd;
+  padding: 7px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  color: #555;
+}
+
+/* RIGHT */
+
+.product-right h1 {
+  font-size: 48px;
+  color: #2D1A16;
+  margin-bottom: 12px;
+}
+
+.rating {
+  color: #f59e0b;
+  font-size: 18px;
+}
+
+.rating span {
+  color: gray;
+  margin-left: 12px;
+  font-size: 15px;
+}
+
+.product-desc {
+  margin: 25px 0;
+  color: #666;
+  line-height: 1.9;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 25px;
+}
+
+/* TITLES */
+
+.section-title {
+  font-size: 12px;
+  letter-spacing: 2px;
+  font-weight: 700;
+  color: #444;
+  margin-bottom: 15px;
+}
+
+.quantity-title {
+  margin-top: 30px;
+}
+
+/* SIZE BUTTONS */
+
+.sizes {
+  display: flex;
+  gap: 14px;
+}
+
+.sizes button {
+  width: 120px;
+  height: 75px;
+
+  background: white;
+
+  border: 1px solid #ddd;
+  border-radius: 12px;
+
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  transition: 0.3s;
+}
+
+.sizes button span {
+  font-weight: 700;
+  color: #2D1A16;
+}
+
+.sizes button small {
+  color: gray;
+  margin-top: 5px;
+}
+
+.sizes button:hover {
+  border-color: #b33422;
+}
+
+.sizes .active {
+  border: 2px solid #b33422;
+  background: #fff5f3;
+}
+
+/* CART ROW */
+
+.cart-row {
+  display: flex;
+  gap: 20px;
+  margin-top: 15px;
+}
+
+/* QUANTITY */
+
+.quantity-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 130px;
+  height: 55px;
+
+  background: white;
+
+  border-radius: 12px;
+
+  border: 1px solid #ddd;
+}
+
+.quantity-box button {
+  border: none;
+  background: transparent;
+
+  font-size: 20px;
+  cursor: pointer;
+
+  width: 35px;
+}
+
+.quantity-box span {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* CART BUTTON */
+
+.cart-btn {
+  flex: 1;
+
+  border: none;
+
+  background: #b33422;
+  color: white;
+
+  border-radius: 12px;
+
+  font-size: 18px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.cart-btn:hover {
+  background: #912718;
+}
+
+/* INFO BOX */
+
+.info-box {
+  background: #fff1ee;
+
+  padding: 22px;
+
+  border-radius: 14px;
+
+  margin-top: 25px;
+}
+
+.info-box h4 {
+  margin-bottom: 20px;
+  color: #2D1A16;
+}
+
+.nutrition-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.nutrition-grid div {
+  background: white;
+  padding: 12px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.nutrition-grid span {
+  display: block;
+  color: gray;
+  font-size: 12px;
+}
+
+.nutrition-grid strong {
+  color: #2D1A16;
+}
+
+.allergens {
+  margin-top: 18px;
+  display: flex;
+  gap: 20px;
+  color: #b33422;
+  font-size: 13px;
+}
+
+/* FEATURES */
+
+.features-section {
+  margin-top: 70px;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 25px;
+}
+
+.feature-card {
+  background: #fff1ee;
+
+  border-radius: 14px;
+
+  padding: 28px;
+
+  transition: 0.3s;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+}
+
+.feature-icon {
+  font-size: 28px;
+  margin-bottom: 15px;
+}
+
+.feature-card h3 {
+  color: #2D1A16;
+  margin-bottom: 15px;
+}
+
+.feature-card p {
+  color: #666;
+  line-height: 1.7;
+}
+
+/* RESPONSIVE */
+
+@media(max-width: 992px) {
+
+  .product-page {
+    grid-template-columns: 1fr;
+  }
+
+  .features-section {
+    grid-template-columns: 1fr;
+  }
+
+  .cart-row {
+    flex-direction: column;
+  }
+
+  .sizes {
+    flex-direction: column;
+  }
+
+  .sizes button {
+    width: 100%;
+  }
+
+  .nutrition-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .product-wrapper {
+    padding: 25px;
+  }
+
+  .product-right h1 {
+    font-size: 36px;
+  }
+}
+
+.product-page-wrapper {
+  background-color: #FAF6F4; /* Matches your pizza studio theme background color */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-container-layout {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 40px 20px;
+  flex: 1; /* Keeps footer pinned beautifully to the screen bottom if content is short */
+}
+
+/* Fixed positioning or custom container loader fallback safety heights */
+.product-loading-container,
+.product-error-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
+  text-align: center;
+}
+
+/* Custom Popup Alert Notification System */
+.custom-toast-popup {
+  position: fixed;
+  top: 30px;
+  right: -400px; /* Hidden off-screen right baseline position */
+  background: #ffffff;
+  border-left: 5px solid #a72814; /* Brand Red accent mark bar */
+  box-shadow: 0 10px 30px rgba(44, 20, 9, 0.15);
+  border-radius: 12px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 340px;
+  z-index: 9999; /* Ensure pop up layered over sticky header bars */
+  transition: right 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Physics-backed spring elastic entry */
+}
+
+/* Active transition engine override class toggled by state hooks */
+.custom-toast-popup.show {
+  right: 30px; 
+}
+
+.toast-icon {
+  font-size: 2rem;
+  background: #fdfaf9;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid #f5eae4;
+}
+
+.toast-message-content {
+  flex: 1;
+}
+
+.toast-message-content h4 {
+  margin: 0 0 4px 0;
+  color: #2c1409;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.toast-message-content p {
+  margin: 0;
+  color: #7c7470;
+  font-size: 0.85rem;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.toast-close-btn {
+  background: none;
+  border: none;
+  color: #b1a7a2;
+  font-size: 0.9rem;
+  cursor: pointer;
+  padding: 4px;
+  transition: color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toast-close-btn:hover {
+  color: #a72814;
+}
+
+/* Screen layout responsive modifications layer for mobile devices */
+@media (max-width: 480px) {
+  .custom-toast-popup {
+    top: auto;
+    bottom: 20px; /* Relocate to bottom card for thumbs access ergonomics on touch views */
+    right: -100%;
+    width: calc(100% - 40px);
+    margin: 0 20px;
+  }
+  
+  .custom-toast-popup.show {
+    right: 0;
+    left: 0;
+  }
+}

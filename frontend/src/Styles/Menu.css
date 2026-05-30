@@ -1,0 +1,275 @@
+/* Core Viewport Styles */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+.menu-page-wrapper {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background-color: #fdfaf7; /* Soft, warm pizza-parlor cream tint */
+  min-height: 100vh;
+}
+
+.menu-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px 80px 20px;
+}
+
+/* Header & Search UI Layout */
+.menu-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.menu-header h1 {
+  font-size: 2.5rem;
+  color: #2c1409;
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+
+.menu-header p {
+  color: #7c6e67;
+  font-size: 1rem;
+  max-width: 650px;
+  margin: 0 auto 30px auto;
+  line-height: 1.6;
+}
+
+/* Functional Search Input Component Styling */
+.menu-search-wrapper {
+  position: relative;
+  max-width: 550px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+}
+
+.menu-search-input {
+  width: 100%;
+  padding: 16px 20px 16px 50px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  border-radius: 30px;
+  border: 2px solid #ebdcd5;
+  background-color: #ffffff;
+  color: #2c1409;
+  outline: none;
+  box-shadow: 0 4px 20px rgba(44, 20, 9, 0.04);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.menu-search-input:focus {
+  border-color: #a72814;
+  box-shadow: 0 6px 24px rgba(167, 40, 20, 0.12);
+}
+
+.search-icon {
+  position: absolute;
+  left: 20px;
+  font-size: 1.2rem;
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.clear-search-btn {
+  position: absolute;
+  right: 20px;
+  background: #f5eae4;
+  border: none;
+  color: #a72814;
+  font-size: 0.85rem;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.clear-search-btn:hover {
+  background: #e2cec5;
+}
+
+/* Layout Grid Structure */
+.menu-layout {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+/* Desktop Sidebar Engine */
+.sidebar-categories {
+  width: 260px;
+  flex-shrink: 0;
+  background: #ffffff;
+  padding: 24px;
+  border-radius: 16px;
+  border: 1px solid #f3ebe7;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02);
+}
+
+.sidebar-categories h3 {
+  font-size: 0.75rem;
+  letter-spacing: 1.5px;
+  color: #a0948e;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.sidebar-categories ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sidebar-categories li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  color: #5c5450;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+}
+
+.sidebar-categories li:hover {
+  background-color: #fdfaf9;
+  color: #a72814;
+}
+
+.sidebar-categories li.active {
+  background-color: #a72814;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(167, 40, 20, 0.2);
+}
+
+.sidebar-categories li .category-count {
+  font-size: 0.8rem;
+  background: #f5eae4;
+  color: #a72814;
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-weight: 700;
+}
+
+.sidebar-categories li.active .category-count {
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
+
+/* Mobile Categories Layout */
+.mobile-categories-pill {
+  display: none;
+}
+
+/* Pizza Card Deck Viewport Display Grid */
+.menu-items-grid {
+  flex-grow: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.menu-card-container {
+  position: relative;
+  background: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.menu-card-container:hover {
+  transform: translateY(-6px);
+}
+
+.bestseller-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: #a72814;
+  color: #ffffff;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  padding: 5px 10px;
+  border-radius: 6px;
+  z-index: 2;
+  box-shadow: 0 4px 8px rgba(167, 40, 20, 0.25);
+}
+
+/* System State Elements */
+.menu-status-msg {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 80px 20px;
+  color: #7c7470;
+  font-size: 1.1rem;
+}
+
+.menu-spinner {
+  border: 4px solid #f3ebe7;
+  border-top: 4px solid #a72814;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 0.8s linear infinite;
+  margin: 0 auto 20px auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* --- Responsive Layout Breaks --- */
+@media (max-width: 900px) {
+  .menu-layout {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .sidebar-categories {
+    display: none;
+  }
+
+  .mobile-categories-pill {
+    display: flex;
+    width: 100%;
+    overflow-x: auto;
+    gap: 10px;
+    padding: 4px 0 16px 0;
+    scrollbar-width: none; /* Hide standard Firefox scroll bar handles */
+  }
+
+  .mobile-categories-pill::-webkit-scrollbar {
+    display: none; /* Hide Chrome/Safari scroll handles */
+  }
+
+  .mobile-pill {
+    white-space: nowrap;
+    padding: 10px 22px;
+    border-radius: 25px;
+    border: 1px solid #ebdcd5;
+    background-color: #ffffff;
+    color: #5c5450;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .mobile-pill.active {
+    background-color: #a72814;
+    color: #ffffff;
+    border-color: #a72814;
+    box-shadow: 0 4px 10px rgba(167, 40, 20, 0.15);
+  }
+}

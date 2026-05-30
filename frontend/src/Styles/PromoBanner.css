@@ -1,0 +1,112 @@
+.promo-banner-card {
+  position: relative;
+  max-width: 1200px;
+  margin: 30px auto 0 auto;
+  background: linear-gradient(135deg, #2c1409 0%, #170702 100%);
+  border-radius: 20px;
+  padding: 40px;
+  overflow: hidden;
+  box-shadow: 0 12px 30px rgba(44, 20, 9, 0.15);
+  display: flex;
+  align-items: center;
+}
+
+.promo-bg-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: radial-gradient(circle at 80% 20%, rgba(167, 40, 20, 0.25) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.promo-pizza-graphic {
+  position: absolute;
+  right: 60px;
+  font-size: 7rem;
+  opacity: 0.8;
+  transform: rotate(15deg);
+  animation: floatEffect 4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.promo-content {
+  position: relative;
+  z-index: 2;
+  max-width: 600px;
+}
+
+.promo-badge-tag {
+  background: #a72814;
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  padding: 6px 14px;
+  border-radius: 30px;
+  width: fit-content;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 8px rgba(167, 40, 20, 0.3);
+}
+
+.promo-content h2 {
+  color: #ffffff;
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin: 0 0 10px 0;
+  letter-spacing: -0.5px;
+}
+
+.promo-content p {
+  color: #e2cec5;
+  font-size: 1.1rem;
+  margin: 0 0 24px 0;
+  font-weight: 500;
+}
+
+.promo-content .highlight-text {
+  color: #ff9f43;
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+.promo-code-pill {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px dashed rgba(255, 255, 255, 0.3);
+  padding: 8px 18px;
+  border-radius: 12px;
+}
+
+.code-label {
+  color: #b1a7a2;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-right: 8px;
+}
+
+.code-string {
+  color: #ffffff;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+}
+
+@keyframes floatEffect {
+  0%, 100% { transform: rotate(15deg) translateY(0px); }
+  50% { transform: rotate(20deg) translateY(-10px); }
+}
+
+@media (max-width: 768px) {
+  .promo-banner-card {
+    padding: 30px 24px;
+    margin: 20px 20px 0 20px;
+  }
+  .promo-pizza-graphic {
+    display: none;
+  }
+  .promo-content h2 {
+    font-size: 1.6rem;
+  }
+}

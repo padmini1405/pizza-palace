@@ -1,0 +1,437 @@
+/* Core Structural Layout Base */
+.navbar {
+  background: #efd8d8; 
+  padding: 24px 0; /* Expanded padding structure keeps the layout from appearing thin */
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  box-shadow: 0 4px 20px rgba(45, 26, 22, 0.06); /* Adds visual layer depth separation */
+  border-bottom: 1px solid #f6efeb;
+}
+
+.nav-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.logo {
+  color: #b33422;
+  font-size: 26px;
+  font-weight: 700;
+  text-decoration: none;
+  letter-spacing: -0.3px;
+}
+
+/* Link Actions Stylesheet */
+.nav-links-desktop {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 36px;
+}
+
+.nav-links-desktop li,
+.nav-links-desktop li a {
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 600;
+  color: #4a3b32;
+  cursor: pointer;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.nav-links-desktop li:hover,
+.nav-links-desktop li a:hover {
+  color: #b33422;
+}
+
+.active-nav-link {
+  color: #b33422 !important;
+  border-bottom: 2px solid #b33422;
+  padding-bottom: 4px;
+}
+
+/* System Action Buttons Grid */
+.nav-icons-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.icon-clickable-node {
+  color: #4a3b32;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  transition: color 0.2s ease;
+}
+
+.icon-clickable-node:hover {
+  color: #b33422;
+}
+
+/* Cart Badge Flag */
+.cart-wrapper {
+  position: relative;
+}
+
+.cart-badge {
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  background: #b33422;
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Fixed Profile Trigger Interactive Element */
+.profile-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.profile-trigger-icon-btn {
+  background: none;
+  border: none;
+  padding: 4px;
+  font-size: 22px;
+  color: #4a3b32;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: color 0.2s ease;
+}
+
+.profile-trigger-icon-btn:hover {
+  color: #b33422;
+}
+
+/* Dropdown Container */
+.profile-dropdown-box {
+  position: absolute;
+  top: 45px;
+  right: 0;
+  width: 220px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(45, 26, 22, 0.15);
+  border: 1px solid #f1eae4;
+  padding: 12px 0;
+  display: flex;
+  flex-direction: column;
+  animation: dropdownFadeIn 0.2s ease-out;
+}
+
+.dropdown-welcome-msg {
+  padding: 8px 18px;
+  font-size: 13px;
+  color: #7a6e67;
+}
+
+.dropdown-welcome-msg span {
+  display: block;
+  font-size: 15px;
+  font-weight: 700;
+  color: #2d1a16;
+  margin-top: 2px;
+}
+
+.dropdown-divider {
+  border: 0;
+  height: 1px;
+  background: #f1eae4;
+  margin: 8px 0;
+}
+
+.profile-dropdown-box button {
+  background: transparent;
+  border: none;
+  text-align: left;
+  padding: 10px 18px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #4a3b32;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.profile-dropdown-box button:hover {
+  background: #fdfbf7;
+  color: #b33422;
+  padding-left: 22px;
+}
+
+.profile-dropdown-box .dropdown-logout-btn {
+  color: #c93b2b;
+}
+
+/* Responsive Touch View Layout Handling */
+.mobile-menu-trigger {
+  display: none;
+  font-size: 26px;
+  color: #4a3b32;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .nav-links-desktop {
+    display: none;
+  }
+
+  .mobile-menu-trigger {
+    display: block;
+  }
+
+  .nav-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    margin-right: auto;
+    margin-left: 16px;
+    font-size: 22px;
+  }
+}
+
+/* Mobile Side Nav Drawer Layout Sheets */
+.mobile-sidebar-drawer {
+  position: fixed;
+  top: 0;
+  left: -280px;
+  width: 280px;
+  height: 100vh;
+  background: #ffffff;
+  box-shadow: 5px 0 25px rgba(0,0,0,0.08);
+  z-index: 1001;
+  transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 24px;
+}
+
+.mobile-sidebar-drawer.drawer-open {
+  left: 0;
+}
+
+.drawer-header {
+  width: 100%;
+  display: flex;
+}
+
+.close-sidebar-btn {
+  margin-left: auto;
+  background: transparent;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: #7a6e67;
+}
+
+.sidebar-links-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.sidebar-links-list li, .sidebar-links-list li a {
+  font-size: 18px;
+  font-weight: 600;
+  color: #2d1a16;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.sidebar-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(45, 26, 22, 0.4);
+  z-index: 1000;
+}
+
+/* PREMIUM LOOK FOR VIEW PROFILE CARD MODAL */
+.profile-view-card-premium {
+  background: #ffffff;
+  width: 400px;
+  border-radius: 24px;
+  box-shadow: 0 20px 50px rgba(45, 26, 22, 0.25);
+  overflow: hidden;
+  animation: modalPopup 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.profile-card-header {
+  background: linear-gradient(135deg, #b33422, #de543f);
+  padding: 36px 24px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.profile-avatar-circle {
+  width: 76px;
+  height: 76px;
+  background: rgba(255, 255, 255, 0.2);
+  border: 2.5px solid #ffffff;
+  border-radius: 50%;
+  margin: 0 auto 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.profile-card-header h2 {
+  font-size: 24px;
+  margin: 0;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+}
+
+.profile-tagline {
+  font-size: 13px;
+  opacity: 0.85;
+  margin-top: 6px;
+}
+
+.profile-card-body {
+  padding: 32px;
+}
+
+.info-profile-field {
+  margin-bottom: 24px;
+}
+
+.info-profile-field:last-child {
+  margin-bottom: 0;
+}
+
+.info-profile-field label {
+  display: block;
+  font-size: 11px;
+  font-weight: 800;
+  color: #a1928a;
+  letter-spacing: 0.8px;
+  margin-bottom: 6px;
+}
+
+.info-profile-field p {
+  font-size: 16px;
+  font-weight: 600;
+  color: #2d1a16;
+  margin: 0;
+  background: #fdfbf7;
+  padding: 12px 16px;
+  border-radius: 10px;
+  border: 1px solid #f1eae4;
+}
+
+.profile-card-footer {
+  padding: 0 32px 32px;
+}
+
+.btn-close-profile {
+  width: 100%;
+  padding: 14px;
+  background: #2d1a16;
+  border: none;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 15px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-close-profile:hover {
+  background: #b33422;
+}
+
+/* COHESIVE SYSTEM DIALOG WINDOWS */
+.profile-modal-edit, .logout-alert-box {
+  background: #ffffff;
+  width: 400px;
+  padding: 32px;
+  border-radius: 20px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+}
+
+.profile-modal-edit h2, .logout-alert-box h3 {
+  color: #2d1a16;
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 22px;
+}
+
+.edit-input-group input {
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 14px;
+  border: 1px solid #dcd1c9;
+  border-radius: 12px;
+  font-size: 15px;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.edit-input-group input:focus {
+  border-color: #b33422;
+}
+
+.modal-buttons-action-row {
+  display: flex;
+  gap: 14px;
+  margin-top: 8px;
+}
+
+.modal-buttons-action-row button {
+  flex: 1;
+  padding: 14px;
+  font-weight: 700;
+  font-size: 15px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-save-edit, .btn-confirm-logout {
+  background: #b33422;
+  color: #ffffff;
+}
+
+.btn-save-edit:hover, .btn-confirm-logout:hover {
+  background: #2d1a16;
+}
+
+.btn-cancel-edit, .btn-cancel-logout {
+  background: #f5eeea;
+  color: #4a3b32;
+}
+
+.btn-cancel-edit:hover, .btn-cancel-logout:hover {
+  background: #e8ded7;
+}
+
+/* ANIMATIONS */
+@keyframes dropdownFadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes modalPopup {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
