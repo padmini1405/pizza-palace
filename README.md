@@ -219,7 +219,7 @@ npm test
 * Customer Reviews & Ratings
 
 ## How to view
-You can access my website by visiting this [Link] .Feel free to explore the content and get in touch.
+You can access my website by visiting this https://pizza-palace-qtq5.vercel.app/ .Feel free to explore the content and get in touch.
 
 ## Author
 
