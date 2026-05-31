@@ -14,24 +14,29 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 30px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .feature-card {
-  padding: 18px;
+  padding: 24px 18px;
+  background: #ffffff; /* Adds container isolation so cards stand out */
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+  height: auto;
 }
 
 .feature-icon {
   width: 65px;
   height: 65px;
-  background: white;
-  margin: auto;
+  background: #fdfbf7;
+  margin: 0 auto 18px;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   color: #b33422;
   font-size: 28px;
-  margin-bottom: 18px;
 }
 
 .feature-card h3 {
@@ -44,72 +49,72 @@
   color: #666;
   line-height: 1.6;
   font-size: 15px;
+  margin: 0;
 }
 
-/* MOBILE RESPONSIVE */
-
-@media (max-width: 768px) {
-
-  .features {
-    padding: 45px 16px;
-  }
-
-  .features h2 {
-    font-size: 26px;
-    margin-bottom: 30px;
-  }
-
-  .features-grid {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-
-  .feature-card {
-    padding: 10px 5px;
-  }
-
-  .feature-icon {
-    width: 55px;
-    height: 55px;
-    font-size: 24px;
-    margin-bottom: 14px;
-  }
-
-  .feature-card h3 {
-    font-size: 18px;
-    margin-bottom: 8px;
-  }
-
-  .feature-card p {
-    font-size: 14px;
-    line-height: 1.5;
-    display: none;
-  }
-}
+/* ==========================================================================
+   UPDATED MOBILE RESPONSIVE LAYOUT
+   ========================================================================== */
 
 @media (max-width: 992px) {
+  .features {
+    padding: 50px 16px;
+  }
+  
+  .features h2 {
+    font-size: 28px;
+    margin-bottom: 32px;
+  }
 
   .features-grid {
     grid-template-columns: repeat(3, 1fr);
-    gap: 18px;
+    gap: 16px;
   }
 
   .feature-card {
-    padding: 12px;
+    padding: 16px 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .features-grid {
+    /* Stack the cards vertically */
+    grid-template-columns: 1fr; 
+    gap: 14px;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
+  .feature-card {
+    display: flex;
+    flex-direction: row; 
+    align-items: center;
+    justify-content: flex-start; 
+    
+    background: #ffffff;
+    padding: 14px 20px;
+    border-radius: 12px;
+    gap: 14px;
   }
 
   .feature-icon {
-    width: 55px;
-    height: 55px;
-    font-size: 24px;
+    width: 42px;
+    height: 42px;
+    font-size: 18px;
+    margin: 0; 
+    flex-shrink: 0; 
   }
 
   .feature-card h3 {
-    font-size: 18px;
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #222;
+    text-align: left;
   }
 
+  
   .feature-card p {
-    font-size: 14px;
-    line-height: 1.5;
+    display: none !important;
   }
 }

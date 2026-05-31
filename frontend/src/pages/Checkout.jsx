@@ -256,7 +256,7 @@ const Checkout = () => {
                   <input
                     type="text"
                     name="fullName"
-                    placeholder="Giacomo Rossini"
+                    placeholder="Rossini"
                     value={formData.fullName}
                     onChange={handleInputChange}
                     className={errors.fullName ? "input-error-state" : ""}
@@ -269,7 +269,7 @@ const Checkout = () => {
                   <input
                     type="text"
                     name="streetAddress"
-                    placeholder="123 Artisan Way, Appian Line"
+                    placeholder="12/3 Rajan Road, T.nagar, "
                     value={formData.streetAddress}
                     onChange={handleInputChange}
                     className={errors.streetAddress ? "input-error-state" : ""}
@@ -282,7 +282,7 @@ const Checkout = () => {
                   <input
                     type="text"
                     name="city"
-                    placeholder="Naples"
+                    placeholder="Chennai"
                     value={formData.city}
                     onChange={handleInputChange}
                     className={errors.city ? "input-error-state" : ""}
@@ -308,7 +308,7 @@ const Checkout = () => {
                   <input
                     type="tel"
                     name="phone"
-                    placeholder="+91 98765 43210"
+                    placeholder="9876543210"
                     value={formData.phone}
                     onChange={handleInputChange}
                     className={errors.phone ? "input-error-state" : ""}

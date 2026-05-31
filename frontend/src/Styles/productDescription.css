@@ -178,20 +178,15 @@
 
 .cart-btn {
   flex: 1;
-
   border: none;
-
   background: #b33422;
   color: white;
-
   border-radius: 12px;
-
   font-size: 18px;
   font-weight: 700;
-
   cursor: pointer;
-
   transition: 0.3s;
+  padding: 8px;
 }
 
 .cart-btn:hover {

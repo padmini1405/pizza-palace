@@ -207,7 +207,7 @@ const ProductDescription = () => {
 
             {/* INFO DETAILS WRAPPER */}
             <div className="info-box">
-              <h4>ⓘ Nutritional Info & Allergens</h4>
+              <h4>ⓘ Nutritional Info & Allergens (per serve)</h4>
               <div className="nutrition-grid">
                 <div>
                   <span>Calories</span>
