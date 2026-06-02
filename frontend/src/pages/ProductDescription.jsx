@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
-import Navbar from "../Components/Navbar"; 
-import Footer from "../Components/Footer"; 
+import Navbar from "../Components/Navbar";
+import Footer from "../Components/Footer";
 import "../Styles/productDescription.css";
 import API_URL from "../config/api";
 
 const ProductDescription = () => {
-  const { id } = useParams(); 
+  const { id } = useParams();
   const { addToCart } = useCart();
+  const navigate = useNavigate();
 
   // Core component states
   const [pizza, setPizza] = useState(null);
@@ -16,6 +17,7 @@ const ProductDescription = () => {
   const [error, setError] = useState(null);
   const [selectedSizeIndex, setSelectedSizeIndex] = useState(0);
   const [quantity, setQuantity] = useState(1);
+  const [showLoginPopup, setShowLoginPopup] = useState(false);
 
   // POPUP NOTIFICATION STATE SETUP
   const [showPopup, setShowPopup] = useState(false);
@@ -58,6 +60,14 @@ const ProductDescription = () => {
 
   // Add constructed item payload to global application basket context
   const handleAddToCartClick = () => {
+
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      setShowLoginPopup(true);
+      return;
+    }
+
     if (!pizza) return;
 
     const currentSizeObj = pizza.sizes[selectedSizeIndex];
@@ -71,15 +81,14 @@ const ProductDescription = () => {
       price: currentSizeObj?.price || 0,
     });
 
-    // TRIGGER THE BEAUTIFUL POPUP WINDOW INSIDE THE UI
     setPopupDetails({
       name: pizza.name,
       size: currentSizeName,
-      qty: quantity
+      qty: quantity,
     });
+
     setShowPopup(true);
 
-    // Auto-dismiss notification card after 3 seconds
     setTimeout(() => {
       setShowPopup(false);
     }, 3000);
@@ -192,14 +201,14 @@ const ProductDescription = () => {
                 <button type="button" onClick={() => handleQuantityChange("increment")}>+</button>
               </div>
 
-              <button 
-                type="button" 
+              <button
+                type="button"
                 className="cart-btn"
                 onClick={handleAddToCartClick}
                 disabled={pizza.isAvailable === false}
               >
-                {pizza.isAvailable === false 
-                  ? "Out of Stock" 
+                {pizza.isAvailable === false
+                  ? "Out of Stock"
                   : `Add to Cart — ₹${totalDisplayPrice}`
                 }
               </button>
@@ -265,6 +274,40 @@ const ProductDescription = () => {
           </div>
         </div>
       </main>
+
+      {showLoginPopup && (
+        <div
+          className="modal-overlay"
+          onClick={() => setShowLoginPopup(false)}
+        >
+          <div
+            className="login-required-modal"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <h2>Login Required</h2>
+
+            <p>
+              Please login to add items to your cart.
+            </p>
+
+            <div className="modal-buttons-action-row">
+              <button
+                className="btn-cancel"
+                onClick={() => setShowLoginPopup(false)}
+              >
+                Cancel
+              </button>
+
+              <button
+                className="btn-login"
+                onClick={() => navigate("/auth")}
+              >
+                Login
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       <Footer />
     </div>

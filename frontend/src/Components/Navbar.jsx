@@ -4,21 +4,24 @@ import { FaUser } from "react-icons/fa";
 import { useLocation, Link, useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import { useState, useEffect } from "react";
+import API_URL from "../config/api";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { cart } = useCart();
 
-  const isAuthPage = location.pathname === "/";
-  const isHomePage = location.pathname === "/home";
+  const isAuthPage = location.pathname === "/auth";
+  const isHomePage = location.pathname === "/";
 
   const [showDropdown, setShowDropdown] = useState(false);
   const [showLogoutBox, setShowLogoutBox] = useState(false);
   const [showProfileModal, setShowProfileModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
-
+  const [showPassword, setShowPassword] = useState(false);
   const [profileData, setProfileData] = useState({
     name: "",
     email: "",
@@ -26,8 +29,16 @@ const Navbar = () => {
   });
 
   const token = localStorage.getItem("token");
-  const userInfo = JSON.parse(localStorage.getItem("user"));
-  const isAdmin = userInfo && userInfo.role === "admin";
+
+  const userInfo = localStorage.getItem("user")
+    ? JSON.parse(localStorage.getItem("user"))
+    : null;
+
+  const isLoggedIn = !!token;
+
+  const isAdmin =
+    isLoggedIn &&
+    userInfo?.role === "admin";
 
   useEffect(() => {
     if (userInfo) {
@@ -71,18 +82,34 @@ const Navbar = () => {
       const data = await response.json();
       if (data.success) {
         localStorage.setItem("user", JSON.stringify(data.user));
-        alert("Profile updated successfully");
+
+        // Different popup messages
+        if (profileData.password.trim()) {
+          toast.success("Password updated successfully 🔐");
+        } else {
+          toast.success("Profile updated successfully 👤");
+        }
+
+        // Clear password field after update
+        setProfileData({
+          ...profileData,
+          password: "",
+        });
+
         setShowEditModal(false);
+      } else {
+        toast.error(data.message || "Update failed");
       }
     } catch (error) {
       console.log(error);
+      toast.error("Failed to update profile");
     }
   };
 
   const scrollToSection = (id) => {
     setShowSidebar(false);
-    if (location.pathname !== "/home") {
-      navigate(`/home#${id}`);
+    if (location.pathname !== "/") {
+      navigate(`/#${id}`);
       return;
     }
     const section = document.getElementById(id);
@@ -109,7 +136,7 @@ const Navbar = () => {
               Pizza Palace
             </span>
           ) : (
-            <Link to="/home" className="logo">
+            <Link to="/" className="logo">
               Pizza Palace
             </Link>
           )}
@@ -120,8 +147,8 @@ const Navbar = () => {
 
               <li>
                 <Link
-                  to="/home"
-                  className={location.pathname === "/home" ? "active-nav-link" : ""}
+                  to="/"
+                  className={location.pathname === "/" ? "active-nav-link" : ""}
                 >
                   Home
                 </Link>
@@ -136,14 +163,16 @@ const Navbar = () => {
                 </Link>
               </li>
 
-              <li>
-                <Link
-                  to="/my-orders"
-                  className={location.pathname === "/my-orders" ? "active-nav-link" : ""}
-                >
-                  Orders
-                </Link>
-              </li>
+              {isLoggedIn && (
+                <li>
+                  <Link
+                    to="/my-orders"
+                    className={location.pathname === "/my-orders" ? "active-nav-link" : ""}
+                  >
+                    Orders
+                  </Link>
+                </li>
+              )}
 
               <li onClick={() => scrollToSection("about")}>
                 About Us
@@ -160,87 +189,141 @@ const Navbar = () => {
           )}
 
           {/* RIGHT PANEL: Interface Actions */}
-          {!isAuthPage && (
-            <div className="nav-icons-wrapper">
-              {!isAdmin && (
-                <div className="cart-wrapper">
-                  <Link to="/cart" className="icon-clickable-node">
-                    <FiShoppingCart />
-                  </Link>
-                  {cart?.length > 0 && (
-                    <span className="cart-badge">{cart.length}</span>
-                  )}
-                </div>
-              )}
+          <div className="nav-icons-wrapper">
 
-              <div className="profile-wrapper">
+            {!isAuthPage && (
+
+              !isLoggedIn ? (
+
                 <button
-                  type="button"
-                  className="profile-trigger-icon-btn"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setShowDropdown(!showDropdown);
-                  }}
+                  className="login-btn"
+                  onClick={() => navigate("/auth")}
                 >
-                  <FaUser />
+                  Login
                 </button>
 
-                {showDropdown && (
-                  <div className="profile-dropdown-box">
-                    <div className="dropdown-welcome-msg">
-                      Welcome, <span>{userInfo?.name || "Guest"}</span>
+              ) : (
+
+                <>
+                  {isLoggedIn && !isAdmin && (
+                    <div className="cart-wrapper">
+                      <Link
+                        to="/cart"
+                        className="icon-clickable-node"
+                      >
+                        <FiShoppingCart />
+                      </Link>
+
+                      {cart?.length > 0 && (
+                        <span className="cart-badge">
+                          {cart.length}
+                        </span>
+                      )}
                     </div>
-                    <hr className="dropdown-divider" />
-                    <button type="button" onClick={() => { setShowProfileModal(true); setShowDropdown(false); }}>
-                      View Profile
+                  )}
+
+                  <div className="profile-wrapper">
+
+                    <button
+                      type="button"
+                      className="profile-trigger-icon-btn"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setShowDropdown(!showDropdown);
+                      }}
+                    >
+                      <FaUser />
                     </button>
-                    <button type="button" onClick={() => { setShowEditModal(true); setShowDropdown(false); }}>
-                      Edit Profile
-                    </button>
-                    <button type="button" className="dropdown-logout-btn" onClick={() => { setShowLogoutBox(true); setShowDropdown(false); }}>
-                      Logout
-                    </button>
+
+                    {showDropdown && (
+                      <div className="profile-dropdown-box">
+
+                        <div className="dropdown-welcome-msg">
+                          Welcome,
+                          <span>{userInfo?.name}</span>
+                        </div>
+
+                        <hr className="dropdown-divider" />
+
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setShowProfileModal(true);
+                            setShowDropdown(false);
+                          }}
+                        >
+                          View Profile
+                        </button>
+
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setShowEditModal(true);
+                            setShowDropdown(false);
+                          }}
+                        >
+                          Edit Profile
+                        </button>
+
+                        <button
+                          type="button"
+                          className="dropdown-logout-btn"
+                          onClick={() => {
+                            setShowLogoutBox(true);
+                            setShowDropdown(false);
+                          }}
+                        >
+                          Logout
+                        </button>
+
+                      </div>
+                    )}
+
                   </div>
-                )}
-              </div>
-            </div>
-          )}
+                </>
+              )
+
+            )}
+
+          </div>
 
         </div>
       </nav>
 
       {/* MOBILE SIDEBAR PANEL DRAWEROVERLAY */}
-      <div className={`mobile-sidebar-drawer ${showSidebar ? "drawer-open" : ""}`}>
-        <div className="drawer-header">
-          {/* <h3>{isAdmin ? "Admin Panel" : "Navigation"}</h3> */}
-          <button type="button" className="close-sidebar-btn" onClick={() => setShowSidebar(false)}>✕</button>
-        </div>
+      {!isAuthPage && (
+        <div className={`mobile-sidebar-drawer ${showSidebar ? "drawer-open" : ""}`}>
+          <div className="drawer-header">
+            {/* <h3>{isAdmin ? "Admin Panel" : "Navigation"}</h3> */}
+            <button type="button" className="close-sidebar-btn" onClick={() => setShowSidebar(false)}>✕</button>
+          </div>
 
-        <ul className="sidebar-links-list">
-          {/* CUSTOMER MOBILE LINKS */}
-          {!isAdmin ? (
-            <>
-              <li><Link to="/home" onClick={() => setShowSidebar(false)}>Home</Link></li>
-              <li><Link to="/menu" onClick={() => setShowSidebar(false)}>Menu</Link></li>
-              <li><Link to="/my-orders" onClick={() => setShowSidebar(false)}>Orders</Link></li>
-              <li onClick={() => scrollToSection("about")}>About Us</li>
-            </>
-          ) : (
-            /* ADMIN MOBILE LINKS */
-            <>
-              <li>
-                <Link to="/admin-dashboard" onClick={() => setShowSidebar(false)}>Overview</Link>
-              </li>
-              <li>
-                <Link to="/admin-pizzalist" onClick={() => setShowSidebar(false)}>Pizza List</Link>
-              </li>
-              <li>
-                <Link to="/admin-orders" onClick={() => setShowSidebar(false)}>All Orders</Link>
-              </li>
-            </>
-          )}
-        </ul>
-      </div>
+          <ul className="sidebar-links-list">
+            {/* CUSTOMER MOBILE LINKS */}
+            {!isAdmin ? (
+              <>
+                <li><Link to="/" onClick={() => setShowSidebar(false)}>Home</Link></li>
+                <li><Link to="/menu" onClick={() => setShowSidebar(false)}>Menu</Link></li>
+                {isLoggedIn && (<li><Link to="/my-orders" onClick={() => setShowSidebar(false)}> Orders</Link></li>)}
+                <li onClick={() => scrollToSection("about")}>About Us</li>
+              </>
+            ) : (
+              /* ADMIN MOBILE LINKS */
+              <>
+                <li>
+                  <Link to="/admin-dashboard" onClick={() => setShowSidebar(false)}>Overview</Link>
+                </li>
+                <li>
+                  <Link to="/admin-pizzalist" onClick={() => setShowSidebar(false)}>Pizza List</Link>
+                </li>
+                <li>
+                  <Link to="/admin-orders" onClick={() => setShowSidebar(false)}>All Orders</Link>
+                </li>
+              </>
+            )}
+          </ul>
+        </div>
+      )}
       {showSidebar && <div className="sidebar-backdrop" onClick={() => setShowSidebar(false)}></div>}
 
       {/* VIEW PROFILE MODAL */}
@@ -291,12 +374,34 @@ const Navbar = () => {
                 value={profileData.email}
                 onChange={(e) => setProfileData({ ...profileData, email: e.target.value })}
               />
-              <input
-                type="password"
-                placeholder="New Password (Leave blank to keep same)"
-                value={profileData.password}
-                onChange={(e) => setProfileData({ ...profileData, password: e.target.value })}
-              />
+              <div className="password-field">
+
+                <input
+                  type={showPassword ? "text" : "password"}
+                  placeholder="New Password (Leave blank to keep same)"
+                  value={profileData.password}
+                  onChange={(e) =>
+                    setProfileData({
+                      ...profileData,
+                      password: e.target.value,
+                    })
+                  }
+                />
+
+                <span
+                  className="password-toggle"
+                  onClick={() =>
+                    setShowPassword(!showPassword)
+                  }
+                >
+                  {showPassword ? (
+                    <FaEyeSlash />
+                  ) : (
+                    <FaEye />
+                  )}
+                </span>
+
+              </div>
             </div>
             <div className="modal-buttons-action-row">
               <button type="button" className="btn-save-edit" onClick={handleUpdateProfile}>Save Changes</button>

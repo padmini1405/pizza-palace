@@ -431,3 +431,47 @@
     left: 0;
   }
 }
+
+.login-required-modal {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  width: 400px;
+  max-width: 90%;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+.login-required-modal h2 {
+  color: #a61b12;
+  margin-bottom: 15px;
+}
+
+.login-required-modal p {
+  margin-bottom: 20px;
+  color: #555;
+}
+
+.btn-login {
+  background: #a61b12;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.btn-cancel {
+  background: #eee;
+  color: #333;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.modal-buttons-action-row {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}

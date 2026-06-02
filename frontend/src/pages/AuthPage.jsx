@@ -5,16 +5,22 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
 
-import { loginUser, registerUser } from "../api/authApi"; 
-import axios from "axios"; 
+import { loginUser, registerUser } from "../api/authApi";
+import axios from "axios";
 
 import bgImage from "../assets/images/pizza1.jpg";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const AuthPage = () => {
     const navigate = useNavigate();
 
     const [activeTab, setActiveTab] = useState("login");
     const [loading, setLoading] = useState(false);
+    const [showLoginPassword, setShowLoginPassword] = useState(false);
+    const [showRegisterPassword, setShowRegisterPassword] = useState(false);
+    const [showRegisterConfirmPassword, setShowRegisterConfirmPassword] = useState(false);
+    const [showForgotPassword, setShowForgotPassword] = useState(false);
+    const [showForgotConfirmPassword, setShowForgotConfirmPassword] = useState(false);
 
     // Form States
     const [loginData, setLoginData] = useState({
@@ -51,7 +57,7 @@ const AuthPage = () => {
             if (data.user.role === "admin") {
                 navigate("/admin-dashboard");
             } else {
-                navigate("/home");
+                navigate("/");
             }
         } catch (error) {
             toast.error(
@@ -84,7 +90,7 @@ const AuthPage = () => {
             localStorage.setItem("user", JSON.stringify(data.user));
 
             toast.success("Account Created Successfully 🍕");
-            navigate("/home");
+            navigate("/");
         } catch (error) {
             toast.error(
                 error.response?.data?.message || "Registration Failed"
@@ -163,16 +169,37 @@ const AuthPage = () => {
                                     <label className="block text-xs uppercase tracking-wide mb-2 text-gray-700 font-semibold">
                                         Password
                                     </label>
-                                    <input
-                                        type="password"
-                                        placeholder="••••••••"
-                                        required
-                                        value={loginData.password}
-                                        onChange={(e) =>
-                                            setLoginData({ ...loginData, password: e.target.value })
-                                        }
-                                        className="w-full border border-gray-300 rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-700"
-                                    />
+                                    <div className="relative">
+                                        <input
+                                            type={showLoginPassword ? "text" : "password"}
+                                            placeholder="••••••••"
+                                            required
+                                            value={loginData.password}
+                                            onChange={(e) =>
+                                                setLoginData({ ...loginData, password: e.target.value })
+                                            }
+                                            className="w-full border border-gray-300 rounded-md px-4 py-3 pr-12 focus:outline-none focus:ring-2 focus:ring-red-700"
+                                        />
+
+                                        <button
+                                            type="button"
+                                            className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500"
+                                            onClick={() =>
+                                                setShowLoginPassword(!showLoginPassword)
+                                            }
+                                        >
+                                            {showLoginPassword ? <FaEyeSlash /> : <FaEye />}
+                                        </button>
+                                    </div>
+                                </div>
+                                <div className="text-right">
+                                    <button
+                                        type="button"
+                                        onClick={() => setIsForgotModalOpen(true)}
+                                        className="text-sm text-red-700 hover:underline"
+                                    >
+                                        Forgot Password?
+                                    </button>
                                 </div>
 
                                 <button
@@ -204,7 +231,7 @@ const AuthPage = () => {
                                     </label>
                                     <input
                                         type="text"
-                                        placeholder="Gino D'Acampo"
+                                        placeholder="padmini"
                                         required
                                         value={registerData.name}
                                         onChange={(e) =>
@@ -220,7 +247,7 @@ const AuthPage = () => {
                                     </label>
                                     <input
                                         type="email"
-                                        placeholder="gino@pizzapalace.com"
+                                        placeholder="padmini@pizzapalace.com"
                                         required
                                         value={registerData.email}
                                         onChange={(e) =>
@@ -234,32 +261,70 @@ const AuthPage = () => {
                                     <label className="block text-xs uppercase tracking-wide mb-2 text-gray-700 font-semibold">
                                         Password
                                     </label>
-                                    <input
-                                        type="password"
-                                        placeholder="Create a strong password"
-                                        required
-                                        value={registerData.password}
-                                        onChange={(e) =>
-                                            setRegisterData({ ...registerData, password: e.target.value })
-                                        }
-                                        className="w-full border border-gray-300 rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-700"
-                                    />
+
+                                    <div className="relative">
+                                        <input
+                                            type={showRegisterPassword ? "text" : "password"}
+                                            placeholder="Create a strong password"
+                                            required
+                                            value={registerData.password}
+                                            onChange={(e) =>
+                                                setRegisterData({
+                                                    ...registerData,
+                                                    password: e.target.value,
+                                                })
+                                            }
+                                            className="w-full border border-gray-300 rounded-md px-4 py-3 pr-12 focus:outline-none focus:ring-2 focus:ring-red-700"
+                                        />
+
+                                        <button
+                                            type="button"
+                                            className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500"
+                                            onClick={() =>
+                                                setShowRegisterPassword(!showRegisterPassword)
+                                            }
+                                        >
+                                            {showRegisterPassword ? <FaEyeSlash /> : <FaEye />}
+                                        </button>
+                                    </div>
                                 </div>
 
                                 <div>
                                     <label className="block text-xs uppercase tracking-wide mb-2 text-gray-700 font-semibold">
                                         Confirm Password
                                     </label>
-                                    <input
-                                        type="password"
-                                        placeholder="Repeat your password"
-                                        required
-                                        value={registerData.confirmPassword}
-                                        onChange={(e) =>
-                                            setRegisterData({ ...registerData, confirmPassword: e.target.value })
-                                        }
-                                        className="w-full border border-gray-300 rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-700"
-                                    />
+
+                                    <div className="relative">
+                                        <input
+                                            type={showRegisterConfirmPassword ? "text" : "password"}
+                                            placeholder="Repeat your password"
+                                            required
+                                            value={registerData.confirmPassword}
+                                            onChange={(e) =>
+                                                setRegisterData({
+                                                    ...registerData,
+                                                    confirmPassword: e.target.value,
+                                                })
+                                            }
+                                            className="w-full border border-gray-300 rounded-md px-4 py-3 pr-12 focus:outline-none focus:ring-2 focus:ring-red-700"
+                                        />
+
+                                        <button
+                                            type="button"
+                                            className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500"
+                                            onClick={() =>
+                                                setShowRegisterConfirmPassword(
+                                                    !showRegisterConfirmPassword
+                                                )
+                                            }
+                                        >
+                                            {showRegisterConfirmPassword ? (
+                                                <FaEyeSlash />
+                                            ) : (
+                                                <FaEye />
+                                            )}
+                                        </button>
+                                    </div>
                                 </div>
 
                                 <p className="text-xs text-gray-500 text-center">
@@ -289,7 +354,7 @@ const AuthPage = () => {
                         {/* Modal Header */}
                         <div className="p-6 border-b border-gray-100 flex justify-between items-center bg-[#fdf6f3]">
                             <h3 className="text-xl font-bold text-[#3c1d12]">Reset Account Password</h3>
-                            <button 
+                            <button
                                 type="button"
                                 onClick={() => setIsForgotModalOpen(false)}
                                 className="text-gray-400 hover:text-gray-600 text-2xl font-semibold focus:outline-none"
@@ -318,28 +383,74 @@ const AuthPage = () => {
                                 <label className="block text-xs uppercase tracking-wide mb-1 text-gray-700 font-semibold">
                                     New Password
                                 </label>
-                                <input
-                                    type="password"
-                                    placeholder="Enter new password"
-                                    required
-                                    value={forgotData.newPassword}
-                                    onChange={(e) => setForgotData({ ...forgotData, newPassword: e.target.value })}
-                                    className="w-full border border-gray-300 rounded-md px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-red-700 text-sm"
-                                />
+
+                                <div className="relative">
+                                    <input
+                                        type={showForgotPassword ? "text" : "password"}
+                                        placeholder="Enter new password"
+                                        required
+                                        value={forgotData.newPassword}
+                                        onChange={(e) =>
+                                            setForgotData({
+                                                ...forgotData,
+                                                newPassword: e.target.value,
+                                            })
+                                        }
+                                        className="w-full border border-gray-300 rounded-md px-4 py-2.5 pr-12 focus:outline-none focus:ring-2 focus:ring-red-700 text-sm"
+                                    />
+
+                                    <button
+                                        type="button"
+                                        className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500"
+                                        onClick={() =>
+                                            setShowForgotPassword(!showForgotPassword)
+                                        }
+                                    >
+                                        {showForgotPassword ? (
+                                            <FaEyeSlash />
+                                        ) : (
+                                            <FaEye />
+                                        )}
+                                    </button>
+                                </div>
                             </div>
 
                             <div>
                                 <label className="block text-xs uppercase tracking-wide mb-1 text-gray-700 font-semibold">
                                     Confirm New Password
                                 </label>
-                                <input
-                                    type="password"
-                                    placeholder="Repeat new password"
-                                    required
-                                    value={forgotData.confirmNewPassword}
-                                    onChange={(e) => setForgotData({ ...forgotData, confirmNewPassword: e.target.value })}
-                                    className="w-full border border-gray-300 rounded-md px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-red-700 text-sm"
-                                />
+
+                                <div className="relative">
+                                    <input
+                                        type={showForgotConfirmPassword ? "text" : "password"}
+                                        placeholder="Repeat new password"
+                                        required
+                                        value={forgotData.confirmNewPassword}
+                                        onChange={(e) =>
+                                            setForgotData({
+                                                ...forgotData,
+                                                confirmNewPassword: e.target.value,
+                                            })
+                                        }
+                                        className="w-full border border-gray-300 rounded-md px-4 py-2.5 pr-12 focus:outline-none focus:ring-2 focus:ring-red-700 text-sm"
+                                    />
+
+                                    <button
+                                        type="button"
+                                        className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500"
+                                        onClick={() =>
+                                            setShowForgotConfirmPassword(
+                                                !showForgotConfirmPassword
+                                            )
+                                        }
+                                    >
+                                        {showForgotConfirmPassword ? (
+                                            <FaEyeSlash />
+                                        ) : (
+                                            <FaEye />
+                                        )}
+                                    </button>
+                                </div>
                             </div>
 
                             {/* Action Control Buttons */}

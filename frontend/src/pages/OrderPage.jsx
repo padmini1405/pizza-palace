@@ -73,7 +73,7 @@ const OrdersPage = ({ adminView = false }) => {
     try {
 
       const response = await fetch(
-        `${API_URL}/orders/${orderId}/status`,
+        `${API_URL}/api/orders/${orderId}/status`,
         {
           method: "PUT",
 

@@ -438,3 +438,23 @@
     padding: 6px 10px;
   }
 }
+
+@media (max-width: 768px) {
+  .orders-table td:nth-of-type(3) {
+    display: grid;
+  }
+
+  .orders-table td:nth-of-type(3) > div {
+    display: flex;
+    flex-direction: column; 
+    gap: 6px;
+    grid-column: 2; 
+    text-align: left;
+    width: 100%;
+  }
+
+  .orders-table td div {
+    word-wrap: break-word;
+    hyphens: auto;
+  }
+}

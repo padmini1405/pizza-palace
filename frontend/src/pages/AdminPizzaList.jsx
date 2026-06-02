@@ -276,7 +276,7 @@ const AdminPizzaList = ({ searchQuery }) => {
                       </td>
 
                       <td className="price-text">
-                        ${mediumSize ? mediumSize.price.toFixed(2) : "0.00"}
+                        ₹{mediumSize ? mediumSize.price.toFixed(2) : "0.00"}
                       </td>
 
                       <td>
@@ -405,7 +405,7 @@ const AdminPizzaList = ({ searchQuery }) => {
                     {viewPizza.sizes.map((size) => (
                       <div key={size.size} className="price-box">
                         <h4>{size.size}</h4>
-                        <p>${size.price}</p>
+                        <p>₹{size.price}</p>
                       </div>
                     ))}
                   </div>

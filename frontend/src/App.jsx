@@ -24,14 +24,14 @@ function App() {
 
       <Routes>
         {/* LOGIN / REGISTER PAGE */}
-        <Route path="/" element={ <GuestRoute> <AuthPage /> </GuestRoute>}/>
+        <Route path="/auth" element={ <GuestRoute> <AuthPage /> </GuestRoute>}/>
 
         {/* CUSTOMER PROTECTED ROUTES */}
-        <Route path="/home" element={ <ProtectedRoute> <Home /> </ProtectedRoute>}/>
+        <Route path="/" element={ <Home /> }/>
 
-        <Route path="/menu" element={ <ProtectedRoute> <Menu /> </ProtectedRoute>}/>
+        <Route path="/menu" element={<Menu />}></Route>
 
-        <Route path="/product/:id" element={ <ProtectedRoute> <ProductDescription /> </ProtectedRoute>}/>
+        <Route path="/product/:id" element={<ProductDescription />}/>
 
         <Route path="/my-orders" element={ <ProtectedRoute> <OrdersPage /> </ProtectedRoute>} />
 
