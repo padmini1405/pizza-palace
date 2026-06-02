@@ -10,6 +10,7 @@ import axios from "axios";
 
 import bgImage from "../assets/images/pizza1.jpg";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import API_URL from "../config/api";
 
 const AuthPage = () => {
     const navigate = useNavigate();
@@ -94,6 +95,47 @@ const AuthPage = () => {
         } catch (error) {
             toast.error(
                 error.response?.data?.message || "Registration Failed"
+            );
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleResetPassword = async (e) => {
+        e.preventDefault();
+
+        if (
+            forgotData.newPassword !==
+            forgotData.confirmNewPassword
+        ) {
+            return toast.error("Passwords do not match");
+        }
+
+        try {
+            setLoading(true);
+
+            const response = await axios.put(
+                `${API_URL}/api/auth/reset-password`,
+                {
+                    email: forgotData.email,
+                    newPassword: forgotData.newPassword,
+                }
+            );
+
+            toast.success(response.data.message);
+
+            setForgotData({
+                email: "",
+                newPassword: "",
+                confirmNewPassword: "",
+            });
+
+            setIsForgotModalOpen(false);
+
+        } catch (error) {
+            toast.error(
+                error.response?.data?.message ||
+                "Password reset failed"
             );
         } finally {
             setLoading(false);

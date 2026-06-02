@@ -34,7 +34,8 @@ export const getAllOrders = async (req, res) => {
     try {
         const orders = await Order.find()
             .populate("customerId")
-            .populate("items.pizza");
+            .populate("items.pizza")
+            .sort({ createdAt: -1 });
 
         res.status(200).json({
             success: true,
