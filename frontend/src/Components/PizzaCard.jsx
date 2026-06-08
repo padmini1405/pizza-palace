@@ -7,7 +7,6 @@ const PizzaCard = ({ pizza }) => {
   const navigate = useNavigate();
 
   const handleDetails = () => {
-    // If your backend uses MongoDB '_id', change this to pizza._id
     const pizzaId = pizza.id || pizza._id; 
     if (pizzaId) {
       navigate(`/product/${pizzaId}`);
@@ -57,7 +56,7 @@ const PizzaCard = ({ pizza }) => {
                 ...pizza,
                 id: pizza.id || pizza._id,
                 quantity: 1,
-                size: pizza.sizes?.[0]?.size || "Regular",
+                size: pizza.sizes?.[0]?.size || "Medium",
                 price: pizza.sizes?.[0]?.price || 0,
               })
             }
